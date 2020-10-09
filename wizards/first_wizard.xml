@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_Library_Loan" model="ir.ui.view">
+            <field name="name">library.load.wizard.loan</field>
+            <field name="model">library.load.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Generate Library Loan">
+                    <footer>
+                        <button string='Add Credit Note' name="library.load.wizard" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+               </form>
+            </field>
+        </record>
+
+        <record id="action_library_loan" model="ir.actions.act_window">
+            <field name="name">Generate Library Loan</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">library.load.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+           <field name="view_id" ref="view_Library_Loan"/>
+           <field name="target">new</field>
+        </record>
+</odoo>

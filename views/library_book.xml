@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Data records go here-->
+    <act_window id="library_book_action" name="Library Books" res_model="library.book"/>
+    <menuitem id="library_book_menu" name="Library" action="library_book_action" parent="" sequence="5"/>
+
+    <record id="library_book_view_form" model="ir.ui.view">
+        <field name="name">Library Book Form</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+        <form>
+            <header>
+                <button name="%(first_module.action_library_loan)d" string="Crear Nuevo" type="action" class="oe_highlight"/>
+            </header>
+            <sheet>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="publisher_id"/>
+                        <field name="publisher_city"/>
+                        <field name="notes"/>
+                        <field name="state"/>
+                        <field name="out_of_print"/>
+                    </group>
+                    <group>
+                        <field name="short_name"/>
+                        <field name="date_release"/>
+                        <field name="date_updated"/>
+                        <field name="cover" widget="image" options="{'size': [100]}"/>
+                        <field name="pages"/>
+                    </group>
+                </group>
+                <group>
+                    <group>
+                        <field name="author_ids">
+                            <tree>
+                                <field name="display_name"/>
+                                <field name="phone"/>
+                            </tree>
+                        </field>
+                        <field name="update_days"/>
+                    </group>
+                    <group>
+                        <field name="description"/>
+                        <field name="currency_id"/>
+                        <field name="retail_price"/>
+                    </group>
+                </group>
+                <group>
+                    <field name="library_member"/>
+                    <field name="date_start"/>
+                </group>
+
+            </sheet>
+        </form>
+        </field>
+    </record>
+
+    <record id="library_book_view_tree" model="ir.ui.view">
+        <field name="name">Library Book List</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="publisher_id"/>
+                <field name="state"/>
+                <field name="age_days"/>
+                <field name="date_release"/>
+                <field name="date_updated"/>
+                <field name="description"/>
+                <field name="pages"/>
+                <field name="currency_id"/>
+                <field name="retail_price"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="library_book_view_search" model="ir.ui.view">
+        <field name="name">Library Book Search</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="author_ids"/>
+                <filter name="filter_search" string="No Authors"
+                        domain="[('author_ids','=',False)]"/>
+            </search>
+        </field>
+    </record>
+</odoo>
+
